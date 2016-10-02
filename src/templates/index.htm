@@ -1,10 +1,17 @@
 <section class="index-wrapper">
     <h1>HELLO</h1>
-    <p>
-        Before we can do anything you need to log into your Spotify account so we can delete all of your playlists.
-    </p>
-    <p>
-        Here is a random value:
-        {{ randomValue }}
-    </p>
+    <div class="not-logged-in" ng-if="!loggedIn">
+        <p>
+            Before we can do anything you need to log into your Spotify account so we can delete all of your playlists.
+        </p>
+        <p>
+            Here is a random value: {{ randomValue }}
+        </p>
+        <p>
+            <button type="button" name="button" ng-click="login()">login</button>
+        </p>
+    </div>
+    <div class="logged-in" ng-if="loggedIn">
+        You are logged in! Click on the menu and select an option to get started!
+    </div>
 </section>
