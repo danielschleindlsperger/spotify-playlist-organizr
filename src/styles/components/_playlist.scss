@@ -1,0 +1,16 @@
+.playlist-wrapper {
+    .playlist-card {
+        text-align: center;
+
+        img {
+            width: 200px;
+            margin: 16px auto;
+            transform: scale(1);
+            transition: transform 0.2s ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}

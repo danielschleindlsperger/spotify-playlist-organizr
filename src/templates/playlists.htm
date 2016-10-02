@@ -1,0 +1,26 @@
+<h1>Playlists!</h1>
+<p>
+    Here are all of you playlists!
+</p>
+<div class="playlist-wrapper" layout="row" layout-wrap layout-align="center">
+    <md-card class="playlist-card" ng-repeat="playlist in playlists" flex="80" flex-gt-xs="40" flex-gt-sm="25" flex-gt-md="20" layout-align="center">
+        <img src="{{playlist.images[0].url ? playlist.images[0].url : '/dist/img/album-placeholder.png'}}" class="md-card-image md-whiteframe-1dp" alt="{{playlist.name}}">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ playlist.name }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-content></md-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button" aria-label="Delete Playlist">
+                <md-icon md-svg-icon="/dist/img/icons/delete.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Edit Playlist">
+                <md-icon md-svg-icon="/dist/img/icons/edit.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Watch Playlist">
+                <md-icon md-svg-icon="/dist/img/icons/eye.svg"></md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

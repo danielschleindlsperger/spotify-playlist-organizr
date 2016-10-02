@@ -6,16 +6,18 @@
         <link rel="stylesheet" href="/dist/css/vendor.css" media="screen" charset="utf-8">
         <link rel="stylesheet" href="/dist/css/app.css" media="screen" charset="utf-8">
     </head>
-    <body ng-app="app">
-        <header>
+    <body ng-app="app" ng-controller="UserController" ng-cloak>
+        <header ng-controller="NavController">
             <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeftMenu()">
                         <md-icon md-svg-icon="/dist/img/icons/menu.svg"></md-icon>
                     </md-button>
-                    <h2>
-                        <span>Spotify Playlist Organizr</span>
-                    </h2>
+                    <a ng-href="#/">
+                        <h2>
+                            <span>organizr</span>
+                        </h2>
+                    </a>
                     <span flex></span>
                     <md-button class="md-icon-button" aria-label="More">
                         <md-icon md-svg-icon="/dist/img/icons/more-vert.svg"></md-icon>
@@ -23,10 +25,31 @@
                 </div>
             </md-toolbar>
         </header>
-        Hello!
+        <div layout="row" ng-controller="NavController">
+            <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
 
-        <ng-view></ng-view>
+                <md-toolbar class="md-theme-light">
+                    <h1 class="md-toolbar-tools">organizr</h1>
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">These are the things you can do with this tool.</md-subheader>
+                        <md-list-item class="md-3-line" ng-click="changeView('playlists')">
+                            <img src="/dist/img/icons/playlist-play.svg" alt="playlists" class="md-avatar"/>
+                            <div class="md-list-item-text" layout="column">
+                                <h3>Playlists</h3>
+                                <p>CRUD your playlists!</p>
+                            </div>
+                        </md-list-item>
+                        <md-divider ></md-divider>
+                    </md-list>
+                </md-content>
 
+            </md-sidenav>
+            <md-content class="md-padding">
+                <ng-view></ng-view>
+            </md-content>
+        </div>
         <script src="/dist/js/vendor.js"></script>
         <script src="/dist/js/all.js"></script>
     </body>
