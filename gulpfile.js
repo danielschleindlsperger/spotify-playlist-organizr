@@ -29,10 +29,10 @@ elixir(function (mix) {
 	], './dist/css/vendor.css');
 
 	// copy templates
-	mix.copy('./src/templates', './dist/templates');
+	mix.copy('./src/templates', 'dist/templates');
 
 	// copy images
-	mix.copy('./src/img', './dist/img');
+	mix.copy('./src/img', 'dist/img');
 
 	mix.browserSync({
 		proxy: false,
