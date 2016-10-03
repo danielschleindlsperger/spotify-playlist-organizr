@@ -1,6 +1,6 @@
 app.controller('PlaylistDetailController', ['$scope', '$rootScope', 'Spotify', 'SpotifyService',
-  '$routeParams', '$mdDialog',
-  function ($scope, $rootScope, Spotify, SS, $routeParams, $mdDialog) {
+  '$routeParams', '$mdDialog', '$mdToast',
+  function ($scope, $rootScope, Spotify, SS, $routeParams, $mdDialog, $mdToast) {
 
     let ownerId = $routeParams.owner_id;
     let playlistId = $routeParams.playlist_id;
@@ -49,10 +49,19 @@ app.controller('PlaylistDetailController', ['$scope', '$rootScope', 'Spotify', '
           return item.track.id === songId;
         });
         $scope.tracks.splice(index, 1);
-        // add toast
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Song deleted!')
+          .position('right')
+          .hideDelay(1500)
+        );
       }, function () {
-        console.log('not deleted')
-        // add toast
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Whew!')
+          .position('right')
+          .hideDelay(1500)
+        );
       });
     };
   }

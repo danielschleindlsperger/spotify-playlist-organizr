@@ -1,6 +1,6 @@
 app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 'SpotifyService',
-  '$routeParams', '$mdDialog',
-  function ($scope, $rootScope, Spotify, SS, $routeParams, $mdDialog) {
+  '$routeParams', '$mdToast',
+  function ($scope, $rootScope, Spotify, SS, $routeParams, $mdToast) {
 
     let seedTracks = [];
 
@@ -13,6 +13,8 @@ app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 
     $scope.allPlaylists = [];
     $scope.userPlaylists = [];
 
+    getRecommendations();
+
     // only get playlists if user is logged in, otherwise wait for log in event
     if ($rootScope.user.id) {
       getAllPlaylists(0);
@@ -21,19 +23,6 @@ app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 
       if ($rootScope.user.id && !$scope.playlistsLoaded) {
         getAllPlaylists(0);
       }
-    });
-
-    Spotify.getUserTopTracks({
-      limit: 5
-    }).then(function (res) {
-      seedTracks = res.items;
-      console.log(seedTracks);
-      Spotify.getRecommendations({
-        seed_tracks: getSeedTrackString()
-      }).then(function (res) {
-        $scope.recommendations = res.tracks;
-        console.log(res);
-      });
     });
 
     function getSeedTrackString() {
@@ -67,10 +56,34 @@ app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 
       console.log($scope.userPlaylists);
     }
 
+    function getRecommendations() {
+      Spotify.getUserTopTracks({
+        limit: 5
+      }).then(function (res) {
+        seedTracks = res.items;
+        console.log(seedTracks);
+        Spotify.getRecommendations({
+          seed_tracks: getSeedTrackString()
+        }).then(function (res) {
+          $scope.recommendations = res.tracks;
+          console.log(res);
+        });
+      });
+    }
+
     $scope.addSongToPlaylist = function (songId, playlistId) {
       Spotify.addPlaylistTracks($rootScope.user.id, playlistId, songId).then(function (res) {
-        console.log(res);
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Song added!')
+          .position('right')
+          .hideDelay(1500)
+        );
       });
+    };
+
+    $scope.reroll = function () {
+      getRecommendations();
     };
 
   }
