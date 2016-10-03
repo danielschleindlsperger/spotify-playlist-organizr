@@ -1,0 +1,10 @@
+[role="menuitem"] {
+    display: flex !important;
+    align-items: center;
+
+    > img {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 16px;
+    }
+}

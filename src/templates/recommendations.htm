@@ -2,3 +2,38 @@
 <p>
     Here are some recommendations!
 </p>
+
+<div class="recommendations-wrapper" layout="row" layout-wrap layout-align="center">
+    <md-card class="playlist-card" ng-repeat="track in recommendations" flex="80" flex-gt-xs="40" flex-gt-sm="25" flex-gt-md="20" layout-align="center">
+        <!-- <a ng-href="/#/playlists/{{playlist.owner.id}}/{{playlist.id}}"> -->
+        <img ng-src="{{track.album.images[0].url ? track.album.images[0].url : '/dist/img/album-placeholder.png'}}" class="md-card-image md-whiteframe-1dp" alt="{{track.name}}">
+        <!-- </a> -->
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ track.name }}</span>
+                <h4>
+                    <span ng-repeat="artist in track.artists">{{ !$first ? ', ' : '' }}{{artist.name}}</span>
+                </h4>
+                <p>{{ track.album.name }}</p>
+            </md-card-title-text>
+        </md-card-title>
+        <md-content></md-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <div layout="column" flex="33" flex-sm="100" flex-xs="100" layout-align="center center">
+                <md-menu md-offset="0 -7">
+                    <md-button class="md-icon-button" aria-label="Add to playlist">
+                        <md-icon md-svg-icon="/dist/img/icons/add.svg" ng-click="$mdOpenMenu($event)"></md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="playlist in userPlaylists" class="context-menu-entry">
+                            <md-button ng-click="addSongToPlaylist(track.id, playlist.id)">
+                                <img ng-src="{{playlist.images[1].url ? playlist.images[1].url : '/dist/img/album-placeholder.png'}}" style="border-radius: 50%;" alt="{{playlist.name}}" height="80%"/>
+                                {{playlist.name}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>
