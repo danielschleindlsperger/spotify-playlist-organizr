@@ -21,13 +21,14 @@ app.controller('PlaylistDetailController', ['$scope', '$rootScope', 'Spotify', '
         limit: 100,
         offset: offset
       }).then(function (res) {
-        console.log(res);
+        // console.log(res);
         $scope.tracks = _.concat($scope.tracks, res.items);
         let length = res.items.length;
         if (length >= 100) {
           getPlaylistTracks(offset + 100);
         } else {
-          console.log($scope.tracks);
+          // console.log($scope.tracks);
+          console.log($scope.playlist);
         }
       });
     }

@@ -17,6 +17,11 @@ app.config(function ($routeProvider) {
 			controller: 'PlaylistDetailController',
 			controllerAs: 'playlist'
 		})
+    .when("/recommendations", {
+			templateUrl: `${templateDir}recommendations.htm`,
+			controller: 'RecommendationsController',
+			controllerAs: 'recommend'
+		})
 		.otherwise({
 			templateUrl: `${templateDir}error.htm`
 		});
