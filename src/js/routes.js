@@ -12,6 +12,11 @@ app.config(function ($routeProvider) {
 			controller: 'PlaylistController',
 			controllerAs: 'playlist'
 		})
+    .when("/playlists/:owner_id/:playlist_id", {
+			templateUrl: `${templateDir}playlist-detail.htm`,
+			controller: 'PlaylistDetailController',
+			controllerAs: 'playlist'
+		})
 		.otherwise({
 			templateUrl: `${templateDir}error.htm`
 		});

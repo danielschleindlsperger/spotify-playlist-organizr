@@ -1,0 +1,38 @@
+<h1>Detail view!</h1>
+<p>
+    Here are all of the playlist's songs!
+</p>
+<div class="playlist-detail-wrapper">
+    <md-card class="playlist-detail-card">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ playlist.name }}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-content>
+            <md-list flex>
+                <md-subheader class="md-no-sticky">{{ tracks.length }} songs in playlist</md-subheader>
+                <div ng-repeat="item in tracks">
+                    <md-list-item class="md-3-line" ng-click="null">
+                        <img ng-src="{{item.track.album.images[1].url}}" class="md-avatar" alt="{{item.track.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.track.name }}</h3>
+                            <h4>
+                            <span ng-repeat="artist in item.track.artists">{{ !$first ? ', ' : '' }}{{artist.name}}</span>
+                        </h4>
+                            <p>{{ item.track.album.name }}</p>
+                        </div>
+                        <md-button
+                        class="md-secondary md-icon-button"
+                        ng-click="deleteSongFromPlaylist($event, item.track.id)"
+                        aria-label="delete song from playlist"
+                        ng-if="userOwned">
+                            <md-icon md-svg-icon="/dist/img/icons/delete.svg"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+            </md-list>
+        </md-content>
+    </md-card>
+</div>
