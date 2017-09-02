@@ -1,3 +1,23 @@
+.recommendation-card {
+    text-align: center;
+    justify-content: flex-start;
+
+    
+    md-card-title {
+        flex: initial;
+
+        .md-headline {
+            margin: 0;
+        }
+    }
+
+    md-card-actions {
+        margin-top: auto;
+    }
+
+
+}
+
 /*
   We're using CSS transitions for when
   the enter and move events are triggered

@@ -8,19 +8,20 @@
 
 <div class="recommendations-wrapper" layout="row" layout-wrap layout-align="center">
     <md-card class="recommendation-card" ng-repeat="track in recommendations" flex="80" flex-gt-xs="40" flex-gt-sm="25" flex-gt-md="20" layout-align="center">
-        <!-- <a ng-href="/#/playlists/{{playlist.owner.id}}/{{playlist.id}}"> -->
-        <img ng-src="{{track.album.images[0].url ? track.album.images[0].url : '/dist/img/album-placeholder.png'}}" class="md-card-image md-whiteframe-1dp" alt="{{track.name}}">
-        <!-- </a> -->
+        <img ng-src="{{track.album.images[0].url ? track.album.images[0].url : '/dist/img/album-placeholder.png'}}" class="md-card-image md-whiteframe-1dp" alt="{{track.name}}">    
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{ track.name }}</span>
-                <h4>
-                    <span ng-repeat="artist in track.artists">{{ !$first ? ', ' : '' }}{{artist.name}}</span>
-                </h4>
-                <p>{{ track.album.name }}</p>
+                <h3 class="md-headline">{{ track.name }}</h3>
             </md-card-title-text>
         </md-card-title>
-        <md-content></md-content>
+        <md-card-content>
+            <div>
+                <span ng-repeat="artist in track.artists">{{ !$first ? ', ' : '' }}{{artist.name}}</span>
+            </div>
+            <div>
+                <span>{{ track.album.name }}</span>
+            </div>
+        </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
             <div layout="column" flex="33" flex-sm="100" flex-xs="100" layout-align="center center">
                 <md-menu md-offset="0 -7">
