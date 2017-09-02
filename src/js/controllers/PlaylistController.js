@@ -18,7 +18,7 @@ app.controller('PlaylistController', ['$scope', '$rootScope', 'Spotify', 'Spotif
       limit: 50,
       offset: offset
     }).then(function (res) {
-      var data = res.data;
+      const data = res.data;
       $scope.playlists = _.concat($scope.playlists, data.items);
       let length = data.items.length;
       if (length >= 50) {

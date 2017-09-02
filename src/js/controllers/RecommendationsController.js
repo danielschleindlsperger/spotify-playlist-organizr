@@ -38,8 +38,9 @@ app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 
         limit: 50,
         offset: offset
       }).then(function (res) {
-        $scope.allPlaylists = _.concat($scope.allPlaylists, res.items);
-        let length = res.items.length;
+        const data = res.data;
+        $scope.allPlaylists = _.concat($scope.allPlaylists, data.items);
+        let length = data.items.length;
         if (length >= 50) {
           getAllPlaylists(offset + 50);
         } else {
@@ -60,12 +61,15 @@ app.controller('RecommendationsController', ['$scope', '$rootScope', 'Spotify', 
       Spotify.getUserTopTracks({
         limit: 5
       }).then(function (res) {
-        seedTracks = res.items;
+        const data = res.data;
+        seedTracks = data.items;
         console.log(seedTracks);
+
         Spotify.getRecommendations({
           seed_tracks: getSeedTrackString()
         }).then(function (res) {
-          $scope.recommendations = res.tracks;
+          const data = res.data;
+          $scope.recommendations = data.tracks;
           console.log(res);
         });
       });
