@@ -12,7 +12,8 @@ app.controller('PlaylistDetailController', ['$scope', '$rootScope', 'Spotify', '
     Spotify.getPlaylist(ownerId, playlistId, {
       limit: 0
     }).then(function (res) {
-      $scope.playlist = res;
+      const data = res.data;
+      $scope.playlist = data;
       $scope.userOwned = ($scope.playlist.owner.id === $rootScope.user.id);
     });
 
@@ -21,13 +22,13 @@ app.controller('PlaylistDetailController', ['$scope', '$rootScope', 'Spotify', '
         limit: 100,
         offset: offset
       }).then(function (res) {
-        // console.log(res);
-        $scope.tracks = _.concat($scope.tracks, res.items);
-        let length = res.items.length;
+        const items = res.data.items;
+        $scope.tracks = _.concat($scope.tracks, items);
+        let length = items.length;
         if (length >= 100) {
           getPlaylistTracks(offset + 100);
         } else {
-          // console.log($scope.tracks);
+          // exit
           console.log($scope.playlist);
         }
       });
