@@ -7,7 +7,7 @@ app.controller('PlaylistController', ['$scope', '$rootScope', 'Spotify', 'Spotif
   if ($rootScope.user.id) {
     getAllPlaylists(0);
   }
-  $scope.$on('userLoggedIn', function (event, payload) {
+  $scope.$on('userLoggedIn', function (event, payload) {  
     if ($rootScope.user.id && !$scope.playlistsLoaded) {
       getAllPlaylists(0);
     }
@@ -18,14 +18,13 @@ app.controller('PlaylistController', ['$scope', '$rootScope', 'Spotify', 'Spotif
       limit: 50,
       offset: offset
     }).then(function (res) {
-      $scope.playlists = _.concat($scope.playlists, res.items);
-      let length = res.items.length;
+      var data = res.data;
+      $scope.playlists = _.concat($scope.playlists, data.items);
+      let length = data.items.length;
       if (length >= 50) {
         getAllPlaylists(offset + 50);
       } else {
         $scope.playlistsLoaded = true;
-        console.log($rootScope.user);
-        console.log($scope.playlists);
       }
     });
   }

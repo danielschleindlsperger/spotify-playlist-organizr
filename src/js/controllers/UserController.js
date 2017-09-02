@@ -4,8 +4,9 @@ app.controller('UserController', ['$scope', '$rootScope', 'Spotify', 'SpotifySer
 	$rootScope.user = {};
 
 	SS.user().then(function (res) {
-		$rootScope.user = res;
+		$rootScope.user = res.data;
 		$rootScope.$broadcast('userLoggedIn', 'Hooraaay');
+		console.log('user is logged in.')
 	});
 
 	$scope.login = function () {
