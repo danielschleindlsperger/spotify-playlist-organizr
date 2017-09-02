@@ -4,13 +4,13 @@
 
         img {
             width: 200px;
-            margin: 16px auto;
+            margin: 10px auto;
             cursor: pointer;
-            transform: scale(1);
+            transform: scale(.9);
             transition: transform 0.2s ease;
 
             &:hover {
-                transform: scale(1.2);
+                transform: scale(1);
             }
         }
     }
